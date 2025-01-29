@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'providers/pet_provider.dart';
-import 'screens/home_screen.dart';
+import 'core/providers/pet_provider.dart';
+import 'features/authentication/screens/login_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomeScreen(),
+        home: LoginScreen(), // Set LoginScreen as the initial screen
       ),
     );
   }
