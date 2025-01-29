@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches:
+    include:
+      - main
+      - dev
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    git clone https://github.com/lafaCodes/PetUsGo-FE.git
+    cd PetUsGo-FE
+    if [ "$(Build.SourceBranchName)" == "main" ]; then
+      git remote add azure https://dev.azure.com/lafaCodes/PetUsGo/_git/PetUsGo-FE
+      git push azure main
+    elif [ "$(Build.SourceBranchName)" == "dev" ]; then
+      git remote add azure https://dev.azure.com/lafaCodes/PetUsGo/_git/PetUsGo-FE
+      git push azure dev
+    fi
+  displayName: 'Sync GitHub to Azure DevOps (PetUsGo-FE)'
+
